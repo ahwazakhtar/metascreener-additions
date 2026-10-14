@@ -1,0 +1,132 @@
+{
+  "customFields": [
+    {
+      "name": "LMIC_Location",
+      "instruction": "Is the study conducted in a low-, lower-middle-, or upper-middle-income country (LMIC)? Use the World Bank income classification for FY2026 as the reference list. Answer Yes if an LMIC country, an LMIC region (e.g. sub-Saharan Africa, South Asia, Latin America), or an LMIC income level is stated or clearly implied - including a multi-country study with at least one LMIC site. Answer Maybe if only general 'low-resource', 'developing country', or 'resource-limited' framing is given with no named country or region, or if a country is named whose income classification you cannot determine, or whose classification changed during the study period. Answer No only if the abstract explicitly places the study in a high-income country with no LMIC site - an affirmative disqualifying statement, never a mere absence. Answer NotStated if the abstract gives no information at all about country, region, or income level. Output exactly one of these four words and nothing else: Yes, No, Maybe, NotStated.",
+      "type": "text",
+      "recheck_yes": false,
+      "recheck_no": false,
+      "force_recheck": false
+    },
+    {
+      "name": "PrimaryCare_Setting",
+      "instruction": "Does the study take place in a primary-care or first-level health facility - a health centre or health post, community clinic, dispensary, general or family practice, outpatient/ambulatory care, community health worker service, private clinic or GP practice, pharmacy, or drug shop? Answer Yes if such a setting is stated or clearly implied, including a study spanning several levels of care that includes a primary-care or first-level component. Answer Maybe if the setting is described in terms that could plausibly be primary or secondary care (e.g. 'health facilities', 'clinics', or 'outpatient departments' with no level of care given). Answer No only if the abstract explicitly places the study in a hospital, inpatient, or specialist/tertiary-care setting with no primary-care component - an affirmative disqualifying statement, never a mere absence. Answer NotStated if the abstract says nothing at all about the care setting. Output exactly one of these four words and nothing else: Yes, No, Maybe, NotStated.",
+      "type": "text",
+      "recheck_yes": false,
+      "recheck_no": false,
+      "force_recheck": false
+    },
+    {
+      "name": "EligibleProvider",
+      "instruction": "Does the study involve providers who typically deliver primary care / first-contact clinical care (e.g. general practitioners, family physicians, generalist nurses, midwives, clinical officers, pharmacists, or community health workers who provide clinical services) -- as opposed to specialists or secondary/tertiary-care providers (e.g. surgeons or other hospital-based specialists, but also non-clinical or technical staff such as x-ray technicians) who would not typically be primary-care providers? Answer No only when the abstract affirmatively and explicitly establishes one of the following: that the study is restricted to specialist or secondary/tertiary-care providers; that it is restricted to community health advocates or volunteers who do not themselves provide clinical care; or that it has a patient-only design with no provider component at all. Silence on any of these is never a No. Answer Yes if primary-care-typical providers are described or implied, including a generic term such as 'health workers', 'health care providers', or 'clinicians' used in a primary-care setting. Answer Maybe if some provider or personnel language appears but it is unclear whether they are primary-care-typical, specialist/secondary-care, or non-clinical -- this includes bare terms such as 'staff' or 'personnel' with no clinical function indicated, which could refer to administrators or other non-clinical workers. Answer NotStated if the abstract neither mentions the type of provider nor clearly states that its subjects are not health-care providers (e.g. patients or community members only). Output exactly one of these four words and nothing else: Yes, No, Maybe, NotStated.",
+      "type": "text",
+      "recheck_yes": false,
+      "recheck_no": false,
+      "force_recheck": false
+    },
+    {
+      "name": "NotVerticalScreening",
+      "instruction": "Does the study concern health care given to a general patient population - patients with an undifferentiated presentation - rather than a single-disease vertical screening programme or a disease-specific clinical population (e.g. TB-only or HIV-only treatment, or a diabetes/hypertension clinic) where patients present for, or are being managed or treated for, an already-known condition? Answer No only if the abstract explicitly restricts the population to patients who are seen for, or being managed or treated for, a specific condition; this includes a dedicated chronic-disease or NCD clinic, even one covering several conditions. Answer Yes if a patient or encounter population is described and is not restricted in that way. The following all count as Yes: a symptom-defined cohort whose diagnosis is not yet known (e.g. children presenting with cough, fever, or diarrhoea); a life-stage population such as antenatal, maternity, or paediatric/child-health care; a condition-specific subgroup analysis, tracer condition, or standardized-patient case presented within an otherwise general primary-care population; and disease-specific care delivered inside general primary care rather than in a dedicated clinic (e.g. an integrated primary-care guideline that covers NCDs). Answer Maybe if a population is described but is genuinely ambiguous between a general population and a condition-restricted one. Answer NotStated if the abstract does not describe the patient population at all. Output exactly one of these four words and nothing else: Yes, No, Maybe, NotStated.",
+      "type": "text",
+      "recheck_yes": false,
+      "recheck_no": false,
+      "force_recheck": false
+    },
+    {
+      "name": "QI_Intervention",
+      "instruction": "Does the study evaluate a quality-improvement intervention - a deliberately introduced change to provider practice, clinic workflow, supervision, provider capability, incentives, or care-delivery inputs, evaluated for its effect on the quality of care? Eligible targets include frontline provider knowledge, behaviour, motivation, effort, staffing, supervision, financing, decision-making, or clinical practice, and the provision of care-delivery resources (staffing, equipment, supplies) where these are introduced or changed as part of the intervention - for example training, mentoring, clinical decision support, guidelines, checklists, audit and feedback, performance-based financing or pay-for-performance, supportive supervision, accreditation, task-shifting, or a facility-wide QI programme. The intervention may be delivered at the clinic or facility level as well as targeted at an individual provider. Answer Yes if such an intervention is evaluated. Answer No if the abstract does not describe any quality-improvement or provider/facility-level intervention at all; or if the study only observes naturally occurring variation in staffing, financing, or resources with no introduced change; or if the study is purely a clinical or pharmacological efficacy trial with no QI component; or if it is a demand-side intervention operating solely at the standardized-patient/patient level (e.g. a scripted standardized patient requesting a specific drug) with no provider- or clinic-side QI intervention. Answer Maybe if an intervention is described but its type or level is unclear from the abstract. Note: a standardized patient used to MEASURE whether a provider-side QI intervention improved care counts as Yes, not No. This field has no NotStated answer -- if the abstract does not describe any intervention at all, answer No. Output exactly one of these three words and nothing else: Yes, No, Maybe.",
+      "type": "text",
+      "recheck_yes": false,
+      "recheck_no": false,
+      "force_recheck": false
+    },
+    {
+      "name": "RelevantOutcome",
+      "instruction": "Does the study measure any outcome related to quality of care? This includes process-of-care quality (e.g. diagnostic accuracy, correct diagnosis, history-taking, examination, testing, treatment, prescribing, referral, or case management; adherence to clinical guidelines or protocols; timeliness of clinically indicated care), patient health outcomes (mortality, morbidity, complications, patient-reported outcomes, patient experience or respectful care), or provider knowledge/competence (such as through vignettes). Answer Yes if such an outcome is named. Answer Maybe if the abstract names a data source or measurement method typically used to capture these outcomes -- e.g. medical or patient record review, standardized patient (SP) encounters, clinical vignettes, direct observation of consultations, exit interviews, or facility/HMIS registers -- even if it does not name the specific outcome itself. Also answer Maybe if the abstract describes evaluating an intervention's effect on care or practice quality but names neither a specific outcome nor one of these characteristic data sources; and answer Maybe when the ONLY outcome named is a borderline one -- service utilisation or coverage, patient adherence, provider attitudes, motivation or satisfaction, provider absenteeism or effort, medicine or equipment availability and stockouts, implementation fidelity, or cost -- since such a study often also reports a quality-of-care outcome that the abstract does not mention. Answer NotStated if the abstract says nothing at all about what was measured, evaluated, or which data source was used. Answer No only if the data source or measurement described affirmatively precludes measuring quality of care (e.g. an analysis of financial records alone, or a provider opinion survey alone). The full text of a study may report quality-of-care outcomes that the abstract does not, so a definitive No should be rare; use Maybe if there is any ambiguity or uncertainty. Output exactly one of these four words and nothing else: Yes, No, Maybe, NotStated.",
+      "type": "text",
+      "recheck_yes": false,
+      "recheck_no": false,
+      "force_recheck": false
+    },
+    {
+      "name": "ControlledDesign",
+      "instruction": "Is the study design estimating the causal effect of an intervention against a comparator? This could be a randomised controlled trial, cluster-randomised trial, non-randomised controlled study, controlled before-after study, or interrupted time series. Answer NotStated if the abstract gives no indication of study design or comparator at all. Answer Maybe if the study design or comparator is described only loosely (e.g. using words like 'evaluation', 'assessment', or 'pilot' without clarifying whether there is a comparator). Answer Yes if a controlled or comparative design is used. Answer No only if the abstract explicitly describes an uncontrolled (single-arm) before-after design, a comparison between subgroups that all received the intervention, or a purely descriptive study with no comparator that did not receive the intervention. Output exactly one of these four words and nothing else: Yes, No, Maybe, NotStated.",
+      "type": "text",
+      "recheck_yes": false,
+      "recheck_no": false,
+      "force_recheck": false
+    },
+    {
+      "name": "NotSystematicReviewOrRegistration",
+      "instruction": "Is this record itself a primary study reporting original data collected and analysed for this study - rather than a systematic review, meta-analysis, scoping review, narrative or umbrella review of other studies, or a trial-registry/protocol entry (e.g. a ClinicalTrials.gov or PROSPERO record, or a published study protocol) that describes a planned or ongoing study with no outcomes yet reported? Answer No only if the title or abstract affirmatively identifies the record as one of these secondary or no-results publication types - for example, it states it is a systematic review, meta-analysis, scoping review, narrative review, or literature review of prior studies, or it is a registry entry or protocol with no results reported. Answer Yes if the abstract describes original data collected and analysed for this study, including a primary study whose introduction briefly reviews prior literature - that does not make the paper itself a review. Answer Maybe if it is unclear whether the record reports original data or only synthesises or registers other studies (e.g. a 'review' that appears, from the abstract, to also present new analysis). Answer NotStated if the title and abstract give no basis at all for judging this. Output exactly one of these four words and nothing else: Yes, No, Maybe, NotStated.",
+      "type": "text",
+      "recheck_yes": false,
+      "recheck_no": false,
+      "force_recheck": false
+    },
+    {
+      "name": "LMIC_Location_Justification",
+      "instruction": "In one or two sentences, justify your LMIC_Location answer above. Quote or paraphrase the specific clause in the abstract that names the country, region, or income level, or state explicitly that none is named rather than inferring one. If a country is named, say whether you could determine its World Bank income classification.",
+      "type": "text",
+      "recheck_yes": false,
+      "recheck_no": false,
+      "force_recheck": false
+    },
+    {
+      "name": "PrimaryCare_Setting_Justification",
+      "instruction": "In one or two sentences, justify your PrimaryCare_Setting answer above. Quote or paraphrase the specific clause in the abstract that describes the care setting, and state which it is: primary/first-level, hospital/inpatient/tertiary, ambiguous as to level, or not described at all.",
+      "type": "text",
+      "recheck_yes": false,
+      "recheck_no": false,
+      "force_recheck": false
+    },
+    {
+      "name": "EligibleProvider_Justification",
+      "instruction": "In one or two sentences, justify your EligibleProvider answer above. Quote or paraphrase the specific clause in the abstract that identifies who delivered or received the intervention, and state which they are: primary-care-typical providers, specialist/secondary-care providers, non-clinical staff or community advocates, patients only, or not described at all.",
+      "type": "text",
+      "recheck_yes": false,
+      "recheck_no": false,
+      "force_recheck": false
+    },
+    {
+      "name": "NotVerticalScreening_Justification",
+      "instruction": "In one or two sentences, justify your NotVerticalScreening answer above. Quote or paraphrase the specific clause in the abstract that describes the patient population, and state which it is: general or undifferentiated, a symptom-defined or life-stage population, restricted to patients seen or managed for a specific condition, or not described at all.",
+      "type": "text",
+      "recheck_yes": false,
+      "recheck_no": false,
+      "force_recheck": false
+    },
+    {
+      "name": "ControlledDesign_Justification",
+      "instruction": "In one or two sentences, justify your ControlledDesign answer above. Quote or paraphrase the specific clause in the abstract that establishes the design and comparator (or their absence). If the abstract does not state a design or comparator, say so explicitly rather than inferring one.",
+      "type": "text",
+      "recheck_yes": false,
+      "recheck_no": false,
+      "force_recheck": false
+    },
+    {
+      "name": "QI_Intervention_Justification",
+      "instruction": "In one or two sentences, justify your QI_Intervention answer above. Quote or paraphrase the specific clause in the abstract that identifies (or fails to identify) the intervention, and state whether it was deliberately introduced and evaluated, or is naturally occurring variation that the study only observes.",
+      "type": "text",
+      "recheck_yes": false,
+      "recheck_no": false,
+      "force_recheck": false
+    },
+    {
+      "name": "RelevantOutcome_Justification",
+      "instruction": "In one or two sentences, justify your RelevantOutcome answer above. Quote or paraphrase the specific clause in the abstract that names (or fails to name) the outcome measured or the data source used, and state which category it falls into: process-of-care quality, patient health outcome, provider knowledge/competence, a borderline outcome, or a data source that precludes measuring quality of care.",
+      "type": "text",
+      "recheck_yes": false,
+      "recheck_no": false,
+      "force_recheck": false
+    },
+    {
+      "name": "NotSystematicReviewOrRegistration_Justification",
+      "instruction": "In one or two sentences, justify your NotSystematicReviewOrRegistration answer above. Quote or paraphrase the specific clause in the title or abstract that identifies the publication type, and state which it is: a primary study reporting original data, a systematic review/meta-analysis/scoping review, a protocol or trial-registry entry with no results, or not stated.",
+      "type": "text",
+      "recheck_yes": false,
+      "recheck_no": false,
+      "force_recheck": false
+    }
+  ]
+}

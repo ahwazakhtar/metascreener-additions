@@ -1,0 +1,8 @@
+# Fetched full texts and run output: copyrighted, never commit
+*.pdf
+fulltext/
+pdfs/
+api-cache.json
+status.csv
+__pycache__/
+*.tmp

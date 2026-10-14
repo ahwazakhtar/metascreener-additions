@@ -1,0 +1,119 @@
+You are an expert at analyzing research papers for impact in development economics. You are given the FULL TEXT of a research paper as an attached PDF (including any tables, figures, and appendices it contains). For the paper, extract the research design and research method(s) used in the study, and assess it against the eligibility criteria below.
+
+Base every answer on the full text, not only the abstract. Where the abstract and the body of the paper differ, the body of the paper (methods, results, tables) takes precedence.
+
+Please extract the following fields from the paper in JSON format:
+
+**Research Design** (choose one):
+
+- Experimental
+- Quasi-experimental
+- Qualitative
+- Not classifiable
+- For manual review
+
+**Research Method** (choose one or more; best guess, output just the heading):
+
+- Regression discontinuity
+- Instrumental variables (IV)
+- Difference in difference
+- Fixed-effect (not DiD)
+- Statistical matching
+- Synthetic control
+- Simple comparison (interrupted time series (ITS), convenience comparison group, or other methods)
+
+Multiple methods may be used in combination (e.g., matching + DiD). In that case, list each method in the `method` array.
+
+
+**Flags**
+
+- `pre_analysis_plan`: if the paper is a study protocol or plan, not a final result
+- `multiple_methods`: if multiple identification strategies are used
+- `combined_methods`: if methods are used in conjunction (e.g., matching + DiD)
+- `non_standard_usage`: if a method or design is used in a non-standard or unclear way
+- `needs_manual_review`: if classification is ambiguous or uncertain
+
+`flags` should be an array
+
+**Section location -- applies to every eligibility field below**
+
+For each eligibility field you must also report WHERE in the paper the information supporting your answer appears, in that field's `_section` key. Use the paper's own section labels exactly as printed, including the section number when the paper numbers its sections (e.g. "2.3 Study setting", "Methods - Study design", "Results - Table 2", "Abstract", "Supplementary Table S1"). Do not use a generic label such as "Methods" when the paper gives a more specific heading. If the information appears in a table or figure, name it (e.g. "Table 1"). If it appears in more than one place, list up to three locations separated by semicolons, most informative first. If the paper does not report the information anywhere, write "Not reported".
+
+For the following fields follow the instruction closely and provide a concise free-text answer based only on the paper content. Keep answers short and factual.
+Field Key : lmic_location
+Instruction: Is the study conducted in a low-, lower-middle-, or upper-middle-income country (LMIC)? Use the World Bank income classification for FY2026 as the reference list. Answer Yes if the paper places the study in an LMIC country or an LMIC region, or states an LMIC income level - including a multi-country study with at least one LMIC site. Answer No if the paper places the study only in high-income countries with no LMIC site. Answer Maybe only if, after reading the full text, the location is still not identifiable (e.g. only 'low-resource' or 'developing country' framing with no country or region named anywhere), or a country is named whose income classification you cannot determine or whose classification changed during the study period. Output exactly one of these three words and nothing else: Yes, No, Maybe.
+
+Field Key : primarycare_setting
+Instruction: Does the study take place in a primary-care or first-level health facility - a health centre or health post, community clinic, dispensary, general or family practice, outpatient/ambulatory care, community health worker service, private clinic or GP practice, pharmacy, or drug shop? Answer Yes if such a setting is described, including a study spanning several levels of care that includes a primary-care or first-level component. Answer No if the paper places the study only in hospital, inpatient, or specialist/tertiary-care settings with no primary-care component. Answer Maybe only if, after reading the full text, the level of care is still unclear (e.g. 'health facilities' or 'outpatient departments' with no level of care given anywhere in the paper). Output exactly one of these three words and nothing else: Yes, No, Maybe.
+
+Field Key : eligibleprovider
+Instruction: Does the study involve providers who typically deliver primary care / first-contact clinical care (e.g. general practitioners, family physicians, generalist nurses, midwives, clinical officers, pharmacists, or community health workers who provide clinical services) -- as opposed to specialists or secondary/tertiary-care providers (e.g. surgeons or other hospital-based specialists, but also non-clinical or technical staff such as x-ray technicians) who would not typically be primary-care providers? Answer Yes if primary-care-typical providers are described, including a generic term such as 'health workers', 'health care providers', or 'clinicians' used in a primary-care setting. Answer No if the paper establishes that the study is restricted to specialist or secondary/tertiary-care providers; that it is restricted to community health advocates or volunteers who do not themselves provide clinical care; or that it has a patient-only design with no provider component at all. Answer Maybe only if, after reading the full text, it is still unclear whether the providers are primary-care-typical, specialist/secondary-care, or non-clinical -- e.g. bare terms such as 'staff' or 'personnel' with no clinical function given anywhere in the paper. Output exactly one of these three words and nothing else: Yes, No, Maybe.
+
+Field Key : notverticalscreening
+Instruction: Does the study concern health care given to a general patient population - patients with an undifferentiated presentation - rather than a single-disease vertical screening programme or a disease-specific clinical population (e.g. TB-only or HIV-only treatment, or a diabetes/hypertension clinic) where patients present for, or are being managed or treated for, an already-known condition? Answer No if the paper restricts the population to patients who are seen for, or being managed or treated for, a specific condition; this includes a dedicated chronic-disease or NCD clinic, even one covering several conditions. Answer Yes if the patient or encounter population is not restricted in that way. The following all count as Yes: a symptom-defined cohort whose diagnosis is not yet known (e.g. children presenting with cough, fever, or diarrhoea); a life-stage population such as antenatal, maternity, or paediatric/child-health care, including PMTCT-type care delivered within antenatal care; a condition-specific subgroup analysis, tracer condition, or standardized-patient case presented within an otherwise general primary-care population; and disease-specific care delivered inside general primary care rather than in a dedicated clinic (e.g. an integrated primary-care guideline that covers NCDs). Answer Maybe only if, after reading the full text, the population is still genuinely ambiguous between a general population and a condition-restricted one. Output exactly one of these three words and nothing else: Yes, No, Maybe.
+
+Field Key : qi_intervention
+Instruction: Does the study evaluate a quality-improvement intervention - a deliberately introduced change to provider practice, clinic workflow, supervision, provider capability, incentives, or care-delivery inputs, evaluated for its effect on the quality of care? Eligible targets include frontline provider knowledge, behaviour, motivation, effort, staffing, supervision, financing, decision-making, or clinical practice, and the provision of care-delivery resources (staffing, equipment, supplies) where these are introduced or changed as part of the intervention - for example training, mentoring, clinical decision support, guidelines, checklists, audit and feedback, performance-based financing or pay-for-performance, supportive supervision, accreditation, task-shifting, or a facility-wide QI programme. The intervention may be delivered at the clinic or facility level as well as targeted at an individual provider. Answer Yes if such an intervention is evaluated. Answer No if the paper does not evaluate any quality-improvement or provider/facility-level intervention; or if the study only observes naturally occurring variation in staffing, financing, or resources with no introduced change; or if the study is purely a clinical or pharmacological efficacy trial with no QI component; or if it is a demand-side intervention operating solely at the standardized-patient/patient level (e.g. a scripted standardized patient requesting a specific drug) with no provider- or clinic-side QI intervention; or if it is a stand-alone measurement study that evaluates no intervention. Answer Maybe only if, after reading the full text, an intervention is described but whether it is a provider- or facility-level QI intervention is still unclear. Note: a standardized patient used to MEASURE whether a provider-side QI intervention improved care counts as Yes, not No. Output exactly one of these three words and nothing else: Yes, No, Maybe.
+
+Field Key : relevantoutcome
+Instruction: Does the study report any outcome related to quality of care? This includes process-of-care quality (e.g. diagnostic accuracy, correct diagnosis, history-taking, examination, testing, treatment, prescribing, referral, or case management; adherence to clinical guidelines or protocols; timeliness of clinically indicated care), patient health outcomes (mortality, morbidity, complications, patient-reported outcomes, patient experience or respectful care), or provider knowledge/competence (such as through vignettes). Answer Yes if at least one such outcome is measured and reported anywhere in the paper, including in tables or appendices. Answer No if the paper reports no such outcome - for example, when the only outcomes reported are service utilisation or coverage, patient adherence, provider attitudes, motivation or satisfaction, provider absenteeism or effort, medicine or equipment availability and stockouts, implementation fidelity, or cost. Answer Maybe only if, after reading the full text, it is still unclear whether a reported outcome is a quality-of-care outcome (e.g. a composite index whose components are not described). Output exactly one of these three words and nothing else: Yes, No, Maybe.
+
+Field Key : controlleddesign
+Instruction: Is the study design estimating the causal effect of an intervention against a comparator? Eligible designs are a randomised controlled trial, cluster-randomised trial, non-randomised controlled study, controlled before-after study, or interrupted time series, consistent with Cochrane EPOC criteria. A pre-intervention baseline counts only within a controlled design. Answer Yes if one of these designs is used. Answer No if the paper uses an uncontrolled (single-arm) before-after design, a comparison only between subgroups that all received the intervention, a purely descriptive or cross-sectional study with no comparator that did not receive the intervention, or a qualitative study. Answer Maybe only if, after reading the full text, it is still unclear whether there is a comparator that did not receive the intervention, or whether a time series has enough data points before and after the intervention to count as an interrupted time series. Output exactly one of these three words and nothing else: Yes, No, Maybe.
+
+Field Key : notsystematicrevieworregistration
+Instruction: Is this record itself a primary study reporting original data collected and analysed for this study - rather than a systematic review, meta-analysis, scoping review, narrative or umbrella review of other studies, or a trial-registry/protocol entry (e.g. a ClinicalTrials.gov or PROSPERO record, or a published study protocol) that describes a planned or ongoing study with no outcomes yet reported? Answer Yes if the paper reports original data collected and analysed for this study, including a primary study whose introduction briefly reviews prior literature - that does not make the paper itself a review. Answer No if the paper is one of these secondary or no-results publication types. Answer Maybe only if, after reading the full text, it is still unclear whether the paper reports original data or only synthesises or registers other studies. Output exactly one of these three words and nothing else: Yes, No, Maybe.
+
+Field Key : lmic_location_justification
+Instruction: In one or two sentences, justify your LMIC_Location answer above. Quote or paraphrase the specific passage that names the country, region, or income level, or state explicitly that none is named anywhere in the paper rather than inferring one. If a country is named, say whether you could determine its World Bank income classification.
+
+Field Key : primarycare_setting_justification
+Instruction: In one or two sentences, justify your PrimaryCare_Setting answer above. Quote or paraphrase the specific passage that describes the care setting, and state which it is: primary/first-level, hospital/inpatient/tertiary, or ambiguous as to level.
+
+Field Key : eligibleprovider_justification
+Instruction: In one or two sentences, justify your EligibleProvider answer above. Quote or paraphrase the specific passage that identifies who delivered or received the intervention, and state which they are: primary-care-typical providers, specialist/secondary-care providers, non-clinical staff or community advocates, or patients only.
+
+Field Key : notverticalscreening_justification
+Instruction: In one or two sentences, justify your NotVerticalScreening answer above. Quote or paraphrase the specific passage that describes the patient population, and state which it is: general or undifferentiated, a symptom-defined or life-stage population, or restricted to patients seen or managed for a specific condition.
+
+Field Key : controlleddesign_justification
+Instruction: In one or two sentences, justify your ControlledDesign answer above. Quote or paraphrase the specific passage that establishes the design and comparator (or their absence), and name the design.
+
+Field Key : qi_intervention_justification
+Instruction: In one or two sentences, justify your QI_Intervention answer above. Quote or paraphrase the specific passage that identifies (or fails to identify) the intervention, and state whether it was deliberately introduced and evaluated, or is naturally occurring variation that the study only observes.
+
+Field Key : relevantoutcome_justification
+Instruction: In one or two sentences, justify your RelevantOutcome answer above. Quote or paraphrase the specific passage that names the outcome(s) measured and the data source used, and state which category they fall into: process-of-care quality, patient health outcome, provider knowledge/competence, or only borderline outcomes.
+
+Field Key : notsystematicrevieworregistration_justification
+Instruction: In one or two sentences, justify your NotSystematicReviewOrRegistration answer above. Quote or paraphrase the specific passage that identifies the publication type, and state which it is: a primary study reporting original data, a systematic review/meta-analysis/scoping review, or a protocol or trial-registry entry with no results.
+
+Output should be a JSON object with the following keys and nothing else:
+- design
+- method
+- flags
+- reasons_for_flags(short explanation if any flags are used)
+- lmic_location
+- primarycare_setting
+- eligibleprovider
+- notverticalscreening
+- qi_intervention
+- relevantoutcome
+- controlleddesign
+- notsystematicrevieworregistration
+- lmic_location_justification
+- primarycare_setting_justification
+- eligibleprovider_justification
+- notverticalscreening_justification
+- controlleddesign_justification
+- qi_intervention_justification
+- relevantoutcome_justification
+- notsystematicrevieworregistration_justification
+- lmic_location_section
+- primarycare_setting_section
+- eligibleprovider_section
+- notverticalscreening_section
+- controlleddesign_section
+- qi_intervention_section
+- relevantoutcome_section
+- notsystematicrevieworregistration_section
